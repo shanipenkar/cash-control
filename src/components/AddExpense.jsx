@@ -31,7 +31,7 @@ const AddExpense = () => {
         onSubmit={handleSubmit}
       >
         <label className="expense-label">Date:</label>
-        <input className="expense-input"
+        <input className="expense-input border-secondary"
           type="date"
           required
           name="date"
@@ -39,7 +39,7 @@ const AddExpense = () => {
           onChange={handleChange}
         />
         <label className="expense-label">Name:</label>
-        <input className="expense-input"
+        <input className="expense-input border-secondary"
           type="text"
           required
           name="name"
@@ -48,15 +48,15 @@ const AddExpense = () => {
           onChange={handleChange}
         />
         <label className="expense-label">Amount:</label>
-        <input className="expense-input"
+        <input className="expense-input border-secondary"
           type="number"
           required
           name="amount"
           value={expense.amount}
           onChange={handleChange}
         />
-        <label className="expense-label">Category:</label>
-        <select className="expense-input"
+        <label className="expense-label ">Category:</label>
+        <select className="expense-input border-secondary"
           type="number"
           required
           name="category"
@@ -77,7 +77,7 @@ const AddExpense = () => {
           <option value="other">Other</option>
         </select>
         <label className="expense-label">Description:</label>
-        <textarea className="expense-input"
+        <textarea className="expense-input border-secondary"
           name="description"
           value={expense.description}
           onChange={handleChange}

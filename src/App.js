@@ -9,7 +9,7 @@ import "./shared/styles.css";
 function App() {
   return (
     <BrowserRouter baseName="/home">
-      <section className="bg-[#7F669D] px-20 py-3">
+      <section className="font-montserrat bg-dark px-20 py-3">
       <Header/>
         <Switch>
           <Route path="/" component={Home} exact />
