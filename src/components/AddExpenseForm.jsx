@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddExpense = () => {
+const AddExpenseForm = () => {
  const today = new Date().toISOString('en-GB').slice(0, 10);
 
   const [expense, setExpense] = useState({
@@ -25,9 +25,9 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="p-5 m-auto w-30">
+    <div className="p-5">
       <form
-        className="bg-white p-6 rounded-lg shadow-md"
+        className="bg-white p-3 justify-center rounded-lg shadow-md w-1/2 mx-auto"
         onSubmit={handleSubmit}
       >
         <label className="expense-label">Date:</label>
@@ -47,15 +47,15 @@ const AddExpense = () => {
           autoComplete="off"
           onChange={handleChange}
         />
-        <label className="expense-label">Amount:</label>
+       <label className="expense-label">Amount:</label>
         <input className="expense-input border-secondary"
           type="number"
           required
           name="amount"
           value={expense.amount}
           onChange={handleChange}
-        />
-        <label className="expense-label ">Category:</label>
+        /> 
+       <label className="expense-label ">Category:</label>
         <select className="expense-input border-secondary"
           type="number"
           required
@@ -90,4 +90,4 @@ const AddExpense = () => {
   );
 };
 
-export default AddExpense;
+export default AddExpenseForm;
