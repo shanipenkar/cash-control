@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+2192FF
+
+
+lights:
+F0DBDB
+d5e7f2
+F1F6F5
+*/
+/* :root {
+  --dark-color: #658864;
+  --primary-color: #b7b78a;
+  --hover-color: #bdbd9b;
+  --light-color: #dddddd;
+} */
+
+.btn {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all ease-out;
+}
+
+.btn:hover {
+  background-color: #DBA39A;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+  transition: all ease-out;
+}
+
+.nav-link {
+  color: #DEBACE;
+  margin-right: 1rem;
+}
+
+.nav-link:hover,
+.active-link.hover {
+  color: white;
+  transform: translateY(-3px);
+}
+
+.active-link {
+  color: white;
+  transform: translateY(-3px);
+}
+
+.expense-input {
+	border-width: 1px;
+    border-color: #DEBACE;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.expense-label {
+display: block;
+font-weight: 500;
+margin-bottom: 0.5rem;
+}
