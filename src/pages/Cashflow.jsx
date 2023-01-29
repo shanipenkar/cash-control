@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import AddExpenseForm from "../components/AddExpenseForm";
-// import AddTransaction from "../pages/AddTransaction";
+import AddTransactionForm from "../components/AddTransactionForm";
 import "../shared/styles.css";
 
 const Cashflow = () => {
-  const [addExpensePressed, setAddExpensePressed] = useState(false);
-
   const History = useHistory();
+
   const onAddExpensePress = (() => {
-    setAddExpensePressed(!addExpensePressed);
-    // History.push({
-    //   pathname: "/addtransaction",
-    // state: {transactionType: "expense"}});
+    History.push({
+      pathname: "/addtransaction",
+    state: {transactionType: "expense"}});
+  });
+
+  const onAddIncomePress = (() => {
+    History.push({
+      pathname: "/addtransaction",
+    state: {transactionType: "income"}});
   });
 
   return (
@@ -20,9 +23,8 @@ const Cashflow = () => {
     <h1 className="flex justify-center font-extrabold text-5xl pb-2 text-[#EEEEEE]">Cash Flow</h1>
       <div className="pt-3 flex justify-center">
         <button className="btn hover:bg-primary" onClick={onAddExpensePress}>Add Expense</button>
-        <button className="btn hover:bg-primary">Add Income</button>
+        <button className="btn hover:bg-primary" onClick={onAddIncomePress}>Add Income</button>
       </div>
-      {addExpensePressed? <AddExpenseForm /> : null}
     </div>
   );
 };

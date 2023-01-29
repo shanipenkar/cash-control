@@ -1,4 +1,11 @@
 
+body::-webkit-scrollbar {
+  width: 0.2em;
+  background-color: #F5F5F5;
+}
+body::-webkit-scrollbar-thumb {
+background-color: #000000;
+}
 .btn {
   background-color: black;
   border: none;
@@ -35,7 +42,7 @@
   transform: translateY(-3px);
 }
 
-.expense-input {
+.trans-input {
 	border-width: 1px;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -43,7 +50,7 @@
     font-size: 0.7rem;
 }
 
-.expense-label {
+.trans-label {
   font-size: 0.7rem;
 display: flex;
 font-weight: 500;
