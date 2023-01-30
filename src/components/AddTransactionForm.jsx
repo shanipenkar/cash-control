@@ -12,7 +12,7 @@ const AddTransactionForm = ({type}) => {
     id:"",
     date: today,
     name: "",
-    amount: "",
+    amount: 0,
     category: "",
     description: "",
     type: type
