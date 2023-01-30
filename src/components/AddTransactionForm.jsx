@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { TransactionContext } from "../TransactionsContext";
+
 const AddTransactionForm = ({type}) => {
   const history = useHistory();
- const today = new Date().toISOString('en-GB').slice(0, 10);
+  
+  const { state, dispatch } = useContext(TransactionContext);
 
+ const today = new Date().toISOString('en-GB').slice(0, 10);
   const [transaction, setTransaction] = useState({
+    id:"",
     date: today,
     name: "",
     amount: "",
     category: "",
     description: "",
+    type: type
   });
 
   const handleChange = (event) => {
@@ -18,19 +24,25 @@ const AddTransactionForm = ({type}) => {
       [event.target.name]: event.target.value,
     });
   };
+  
 
-  const handleExpenseSubmit = (event) => {
-    event.preventDefault();
-    // Add code here to handle form submission and save the expense to the backend
-    console.log(transaction);
-    history.push("/cashflow")
+  const handleSubmit = (transactionToAdd) => {
+    transactionToAdd.id = Date.now();
+    console.log(transactionToAdd);
+    dispatch({
+      type: 'ADD_TRANSACTION',
+      payload: transactionToAdd
+    })
+    console.log(state);
+    history.push("/cashflow");
   };
+
 
   return (
     <div className="p-5">
       <form
         className="bg-white p-3 justify-center rounded-lg shadow-md w-1/2 mx-auto"
-        onSubmit={handleExpenseSubmit}
+        onSubmit= {()=>handleSubmit(transaction)}
       >
         <label className="trans-label">Date:</label>
         <input className="trans-input border-secondary"
