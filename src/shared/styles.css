@@ -29,17 +29,19 @@ background-color: #000000;
 
 .nav-link {
   margin-right: 1rem;
+  color: black;
+  font-weight: 500;
 }
 
 .nav-link:hover,
 .active-link.hover {
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-1.5px);
 }
 
 .active-link {
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-1.5px);
 }
 
 .trans-input {
@@ -57,6 +59,31 @@ font-weight: 500;
 margin-bottom: 0.25rem;
 padding-top: 15;
 }
+
+
+/* Cash Flow Table */
+ tr th {
+    padding-left: 1rem;
+padding-right: 1rem;
+    	padding-top: 0.5rem;
+padding-bottom: 0.5rem;
+border-right-width: 1px;
+  }
+
+  tr th:last-child {
+    border: none;
+  }
+
+  tr td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    position: relative
+  }
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
