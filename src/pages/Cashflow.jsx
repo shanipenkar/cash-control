@@ -62,10 +62,10 @@ const Cashflow = () => {
           <table className="justify-center border-secondary table-auto w-full text-center">
             <thead className="bg-transparent text-black">
               <tr className="text-sm font-medium">
-                <th className="border-secondary">Date</th>
+                <th className="border-secondary w-32">Date</th>
                 <th className="border-secondary">Name</th>
                 <th className="border-secondary">Type</th>
-                <th className="border-secondary">Amount</th>
+                <th className="border-secondary w-32">Amount (₪)</th>
                 <th className="border-secondary">Category</th>
                 <th className="border-secondary">Description</th>
                 <th className="border-secondary">Actions</th>
@@ -74,6 +74,7 @@ const Cashflow = () => {
             <tbody>
               {state.transactions.map((transaction) => (
                 <tr key={transaction.id} className="text-sm font-medium bg-gray-100">
+                
                   <td className="border-secondary">{transaction.date}</td>
                   <td className="border-secondary">{transaction.name}</td>
                   <td className="border-secondary">{transaction.type}</td>

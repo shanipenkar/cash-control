@@ -89,6 +89,7 @@ const AddTransactionForm = ({type}) => {
           <option value="insurance">Insurance</option>
           <option value="entertainment">Entertainment</option>
           <option value="cosmetics">Cosmetics</option>
+          <option value="pets">Pets</option>
           <option value="love">Love</option>
           <option value="other">Other</option>
           </>}
@@ -104,7 +105,7 @@ const AddTransactionForm = ({type}) => {
           </>}
         </select>
         <label className="trans-label">Description:</label>
-        <textarea className="trans-input border-secondary"
+        <textarea maxLength="200" className="trans-input border-secondary"
           name="description"
           value={transaction.description}
           onChange={handleChange}
