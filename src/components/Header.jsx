@@ -4,7 +4,7 @@ import "../shared/styles.css";
 
 const Header = () => {
   return (
-    <div className="w-auto border-b border-sm border-light border-opacity-25">
+    <div className="border-b border-sm border-light border-opacity-25">
     <nav className="py-3 flex items-center justify-evenly">
         <NavLink to="/" exact className="nav-link text-secondary" activeClassName="active-link">Home</NavLink>
         <NavLink to="/cashflow" className="nav-link text-secondary" activeClassName="active-link">Cash Flow</NavLink>
