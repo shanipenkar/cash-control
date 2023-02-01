@@ -203,7 +203,7 @@ const Cashflow = () => {
                     <td className="border-secondary">
                     {mode === "update" && selectedTransaction.id === transaction.id 
                     && selectedTransaction.type === "expense" && <select
-                          className="trans-input border-secondary"
+                          className="trans-update"
                           type="number"
                           required
                           name="category"
@@ -230,7 +230,7 @@ const Cashflow = () => {
                           </select>}
                           {mode === "update" && selectedTransaction.id === transaction.id 
                     && selectedTransaction.type === "income" && <select
-                          className="trans-input border-secondary"
+                          className="trans-update"
                           type="number"
                           required
                           name="category"
