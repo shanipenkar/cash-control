@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from 'react';
 
 const initialState = {
-  transactions: []
+  transactions: [{id: 1, date: '2020-01-01', name: 'test1', amount: 10000, category: 'salary', description: 'test1', type: 'income'},
+  {id: 2, date: '2020-01-01', name: 'test1', amount: 100, category: 'food', description: 'test2', type: 'expense'}]
 };
 
 export const TransactionContext = createContext(initialState);
