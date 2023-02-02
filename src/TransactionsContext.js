@@ -49,9 +49,8 @@ const transactionReducer = (state, action) => {
         ...state,
         transactions: state.transactions.filter(
           (transaction) =>
-            transaction.id !==
-            action.payload.sort((a, b) => new Date(a.date) - new Date(b.date))
-        ),
+            transaction.id !==  action.payload
+        ).sort((a, b) => new Date(a.date) - new Date(b.date)),
       };
     default:
       return state;
