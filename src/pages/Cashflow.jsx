@@ -92,21 +92,21 @@ const Cashflow = () => {
 
   return (
     <div className="px-6 py-10">
-      <h1 className="flex justify-center font-extrabold text-5xl pb-2 text-light">
+      <h1 className="flex justify-center font-extrabold text-5xl pb-2 text-textColor">
         Cash Flow
       </h1>
       <div className="pt-3 flex justify-center">
-        <button className="btn hover:bg-primary" onClick={onAddExpensePress}>
+        <button className="btn bg-black text-white hover:bg-textColor2 hover:text-black" onClick={onAddExpensePress}>
           Add Expense
         </button>
-        <button className="btn hover:bg-primary" onClick={onAddIncomePress}>
+        <button className="btn  bg-black text-white hover:bg-textColor2 hover:text-black" onClick={onAddIncomePress}>
           Add Income
         </button>
       </div>
 
       <div className="pt-7">
         {state.transactions.length === 0 ? (
-          <p className="text-center text-3xl text-light">No transactions yet</p>
+          <p className="text-center text-3xl text-textColor">No transactions yet</p>
         ) : (
           <div className="rounded-xl bg-white overflow-auto">
             <table className="justify-center border-secondary table-auto w-full text-center">
@@ -266,36 +266,36 @@ const Cashflow = () => {
                       )}
                     </td>
                     {/* actions */}
-                    <td className="border-secondary">
+                    <td className="border-secondary w-1/6">
                       {mode === "update" &&
                       selectedTransaction.id === transaction.id ? (
-                        <div className="flex">
+                        <div className="flex justify-center">
                           <button
-                            className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-1"
+                            className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-3 w-5/12"
                             onClick={handleSave}
                           >
-                            Save
+                            Save <i class="fa-solid fa-check"></i>
                           </button>
                           <button
-                            className="text-xs font-medium text-white bg-red-500 rounded p-1"
+                            className="text-xs font-medium text-white bg-red-500 rounded p-1 w-5/12"
                             onClick={() => setMode("default")}
                           >
-                            Cancel
+                            Cancel <i class="fa-solid fa-xmark"></i>
                           </button>
                         </div>
                       ) : (
-                        <div className="flex">
+                        <div className="flex justify-center">
                           <button
-                            className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-1"
+                            className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-3 w-5/12"
                             onClick={() => handleUpdate(transaction)}
                           >
-                            Update
+                              Update <i class="fa fa-pencil" aria-hidden="true"></i> 
                           </button>
                           <button
-                            className="text-xs font-medium text-white bg-red-500 rounded p-1"
+                            className="text-xs font-medium text-white bg-red-500 rounded p-1 w-5/12"
                             onClick={() => handleDelete(transaction.id)}
                           >
-                            Delete
+                            Delete <i class="fa fa-trash" aria-hidden="true"></i>
                           </button>
                         </div>
                       )}
@@ -306,7 +306,7 @@ const Cashflow = () => {
             </table>
           </div>
         )}
-        <div className=" pt-5 text-center text-xl text-light">
+        <div className=" pt-5 text-center text-xl text-textColor">
           <p>Total Expenses: {TotalExpenses}</p>
           <p>Total Incomes: {TotalIncomes}</p>
           <p>Balance: {TotalIncomes - TotalExpenses}</p>

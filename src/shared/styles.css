@@ -6,9 +6,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
 .btn {
-  background-color: black;
   border: none;
-  color: white;
   padding: 7px 12px;
   text-align: center;
   text-decoration: none;
@@ -28,7 +26,6 @@ body::-webkit-scrollbar-thumb {
 
 .nav-link {
   margin-right: 1rem;
-  color: black;
   font-weight: 500;
 }
 
@@ -39,7 +36,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .active-link {
-  color: white;
   transform: translateY(-1.5px);
 }
 
@@ -83,7 +79,6 @@ tr th {
 tr td {
   font-size: 11px;
   padding: 0.25rem;
-  width: 100%;
   border-right-width: 1px;
   border-top-width: 1px;
   border-bottom-width: 0;

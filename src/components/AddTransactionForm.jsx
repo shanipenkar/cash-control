@@ -119,14 +119,14 @@ const AddTransactionForm = ({ type }) => {
         />
         <div className="flex justify-around">
           <button
-            className="btn capitalize w-2/5"
+            className="btn capitalize w-2/5  bg-black text-white hover:bg-textColor hover:text-black"
             onClick={() => {
               history.push("/cashflow");
             }}
           >
             Back
           </button>
-          <button className="btn capitalize w-2/5" type="submit">
+          <button className="btn capitalize w-2/5 bg-black text-white hover:bg-textColor hover:text-black" type="submit">
             Add {type}
           </button>
         </div>
