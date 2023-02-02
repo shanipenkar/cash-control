@@ -8,7 +8,7 @@ const AddTransaction = () => {
   
   return (
     <div className='px-6 py-10'>
-    <h1 className="capitalize flex justify-center font-extrabold text-5xl pb-2 text-[#EEEEEE]">Add {type}</h1>
+    <h1 className="capitalize flex justify-center font-extrabold text-5xl pb-2 text-textColor">Add {type}</h1>
     <AddTransactionForm type={type}/>
     </div>
   )

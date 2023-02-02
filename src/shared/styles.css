@@ -1,15 +1,12 @@
-
 body::-webkit-scrollbar {
   width: 0.2em;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 body::-webkit-scrollbar-thumb {
-background-color: #000000;
+  background-color: #000000;
 }
 .btn {
-  background-color: black;
   border: none;
-  color: white;
   padding: 7px 12px;
   text-align: center;
   text-decoration: none;
@@ -29,35 +26,72 @@ background-color: #000000;
 
 .nav-link {
   margin-right: 1rem;
+  font-weight: 500;
 }
 
 .nav-link:hover,
 .active-link.hover {
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-1.5px);
 }
 
 .active-link {
-  color: white;
-  transform: translateY(-3px);
+  transform: translateY(-1.5px);
 }
 
 .trans-input {
-	border-width: 1px;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    width: 100%;
-    font-size: 0.7rem;
+  border-width: 1px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 11px;
 }
 
 .trans-label {
   font-size: 0.7rem;
-display: flex;
-font-weight: 500;
-margin-bottom: 0.25rem;
-padding-top: 15;
+  display: flex;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  padding-top: 4px;
 }
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+.trans-update {
+  display: flex;
+  border-width: 1px;
+  padding: 0px;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Cash Flow Table */
+tr th {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-right-width: 1px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+tr td {
+  font-size: 11px;
+  padding: 0.25rem;
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+  position: relative;
+  text-transform: capitalize;
+}
+
+textarea {
+  justify-content: center;
+  resize: vertical;
+}
+
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
