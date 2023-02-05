@@ -221,7 +221,7 @@ const TransactionTable = () => {
                       )}
                     </td>
                     {/* actions */}
-                    <td className="border-secondary w-1/6">
+                    <td className="border-secondary w-1/4">
                       {mode === "update" &&
                       selectedTransaction.id === transaction.id ? (
                         <div className="flex justify-center">
