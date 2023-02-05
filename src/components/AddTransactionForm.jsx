@@ -84,6 +84,9 @@ const AddTransactionForm = ({ type }) => {
               <option value="food">Food</option>
               <option value="children">Children</option>
               <option value="rent">Rent</option>
+              <option value="electricity ">Electricity</option>
+              <option value="water">Water</option>
+              <option value="propertyTax">Property Tax</option>
               <option value="transportation">Transportation</option>
               <option value="car">Car</option>
               <option value="medical">Medical</option>

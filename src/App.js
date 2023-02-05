@@ -7,8 +7,8 @@ import Header from "./components/Header";
 import AddTransaction from "./pages/AddTransaction";
 import { TransactionProvider } from "./TransactionsContext";
 import "./shared/styles.css";
-
 function App() {
+
   return (
     <TransactionProvider>
     <BrowserRouter baseName="/home">
