@@ -28,10 +28,15 @@ const incomesCategories = [
   "Other",
 ];
 
+router.route('/').get((req, res) => {
+  res.json([expensesCategories, incomesCategories]);
+});
+
 router.route('/:type').get((req, res) => {
   req.params.type === "expense"
     ? res.json(expensesCategories)
     : res.json(incomesCategories);
 });
+
 
 module.exports = router;

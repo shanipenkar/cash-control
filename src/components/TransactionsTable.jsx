@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLayoutEffect, useEffect} from "react";
+import React, {useState, useLayoutEffect, useEffect} from "react";
 // import { TransactionContext } from "../TransactionsContext";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ const TransactionTable = () => {
   const [TotalExpenses, setTotalExpenses] = useState(0);
   const [TotalIncomes, setTotalIncomes] = useState(0);
   const [transactions, setTransactions] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [tableUpdated, setTableUpdated] = useState(false);
   
   useLayoutEffect(() => {
@@ -20,6 +21,14 @@ const TransactionTable = () => {
       }
     })
     setTableUpdated(false);
+
+    axios.get("http://localhost:5000/categories/")
+    .then(res => {
+      if(res.data.length > 0) {
+        setCategories(res.data);
+        console.log(categories);
+      }
+    })
   } , [tableUpdated]);
 
   const handleDelete = (transactionId) => {
@@ -184,22 +193,8 @@ const TransactionTable = () => {
                           value={selectedTransaction.category}
                           onChange={handleChange}
                         >
-                          <option value="food">Food</option>
-                          <option value="children">Children</option>
-                          <option value="rent">Rent</option>
-                          <option value="electricity ">Electricity</option>
-                          <option value="water">Water</option>
-                          <option value="propertyTax">Property Tax</option>
-                          <option value="transportation">Transportation</option>
-                          <option value="car">Car</option>
-                          <option value="medical">Medical</option>
-                          <option value="clothing">Clothing</option>
-                          <option value="insurance">Insurance</option>
-                          <option value="entertainment">Entertainment</option>
-                          <option value="cosmetics">Cosmetics</option>
-                          <option value="pets">Pets</option>
-                          <option value="love">Love</option>
-                          <option value="other">Other</option>
+                        {categories[0].map(category => 
+                        <option>{category}</option>)}
                         </select>
                       )}
                     {mode === "update" &&
@@ -213,13 +208,8 @@ const TransactionTable = () => {
                           value={selectedTransaction.category}
                           onChange={handleChange}
                         >
-                          <option value="salary">Salary</option>
-                          <option value="side-hustle">Side Hustle</option>
-                          <option value="investments">Investments</option>
-                          <option value="pension">Pension</option>
-                          <option value="scholarship">Scholarship</option>
-                          <option value="gift">Gift</option>
-                          <option value="other">Other</option>
+                          {categories[1].map(category => 
+                        <option>{category}</option>)}
                         </select>
                       )}
                     {mode === "update" &&
