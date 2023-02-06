@@ -1,28 +1,40 @@
-import React, { useContext, useState } from "react";
-import { TransactionContext } from "../TransactionsContext";
+import React, { useContext, useState, useLayoutEffect, useEffect} from "react";
+// import { TransactionContext } from "../TransactionsContext";
+import axios from "axios";
 
 const TransactionTable = () => {
-  const { state, dispatch } = useContext(TransactionContext);
+  // const { state, dispatch } = useContext(TransactionContext);
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [TotalExpenses, setTotalExpenses] = useState(0);
   const [TotalIncomes, setTotalIncomes] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const [tableUpdated, setTableUpdated] = useState(false);
+  
+  useLayoutEffect(() => {
+    axios.get("http://localhost:5000/transactions/")
+    .then(res => {
+      if(res.data.length > 0) {
+        setTransactions(res.data);
+        console.log(transactions);
+      }
+    })
+    setTableUpdated(false);
+  } , [tableUpdated]);
 
   const handleDelete = (transactionId) => {
     console.log(transactionId);
-    dispatch({
-      type: "DELETE_TRANSACTION",
-      payload: transactionId,
-    });
-    console.log(state);
+    axios.delete("http://localhost:5000/transactions/" + transactionId)
+    .then(res => console.log(res.data))
+    setTableUpdated(true);
   };
 
   const getDefaultCategory = (type) => {
     switch (type) {
       case "income":
-        return "salary";
+        return "Salary";
       case "expense":
-        return "food";
+        return "Food";
       default:
         return "";
     }
@@ -36,10 +48,14 @@ const TransactionTable = () => {
 
   // after clicking on V button to save the changes
   const handleSave = () => {
-    dispatch({
-      type: "UPDATE_TRANSACTION",
-      payload: selectedTransaction,
-    });
+    // dispatch({
+    //   type: "UPDATE_TRANSACTION",
+    //   payload: selectedTransaction,
+    // });
+    axios.post("http://localhost:5000/transactions/update/" + selectedTransaction._id, selectedTransaction)
+    .then(res => 
+      console.log("Transaction successfully updated:", res.data))
+    setTableUpdated(true);
     setMode("default");
   };
 
@@ -59,7 +75,7 @@ const TransactionTable = () => {
 
   return (
     <div className="pt-7">
-      {state.transactions.length === 0 ? (
+      {transactions.length === 0 ? (
         <p className="text-center text-3xl text-textColor">
           No transactions yet
         </p>
@@ -78,13 +94,13 @@ const TransactionTable = () => {
               </tr>
             </thead>
             <tbody>
-              {state.transactions.map((transaction) => (
+              {transactions.map((transaction) => (
                 <tr
-                  key={transaction.id}
+                  key={transaction._id}
                   // className="text-sm font-medium bg-gray-100"
                   className={
                     mode === "update" &&
-                    selectedTransaction.id === transaction.id
+                    selectedTransaction._id === transaction._id
                       ? "text-sm font-medium bg-gray-200"
                       : "text-sm font-medium bg-gray-100"
                   }
@@ -92,7 +108,7 @@ const TransactionTable = () => {
                   {/* date */}
                   <td className="border-secondary ">
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <input
                         type="date"
                         name="date"
@@ -107,7 +123,7 @@ const TransactionTable = () => {
                   {/* name */}
                   <td className="border-secondary">
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <input
                         type="text"
                         name="name"
@@ -124,7 +140,7 @@ const TransactionTable = () => {
                   <td className="border-secondary">
                     {/* {transaction.type} */}
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <select
                         name="type"
                         value={selectedTransaction.type}
@@ -142,7 +158,7 @@ const TransactionTable = () => {
                   {/* amount */}
                   <td className="border-secondary">
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <input
                         type="number"
                         name="amount"
@@ -158,7 +174,7 @@ const TransactionTable = () => {
                   {/* category */}
                   <td className="border-secondary">
                     {mode === "update" &&
-                      selectedTransaction.id === transaction.id &&
+                      selectedTransaction._id === transaction._id &&
                       selectedTransaction.type === "expense" && (
                         <select
                           className="trans-update"
@@ -187,7 +203,7 @@ const TransactionTable = () => {
                         </select>
                       )}
                     {mode === "update" &&
-                      selectedTransaction.id === transaction.id &&
+                      selectedTransaction._id === transaction._id &&
                       selectedTransaction.type === "income" && (
                         <select
                           className="trans-update"
@@ -207,14 +223,14 @@ const TransactionTable = () => {
                         </select>
                       )}
                     {mode === "update" &&
-                      selectedTransaction.id !== transaction.id &&
+                      selectedTransaction._id !== transaction._id &&
                       transaction.category}
                     {mode !== "update" && transaction.category}
                   </td>
                   {/* description */}
                   <td className="border-secondary">
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <textarea
                         type="text"
                         name="description"
@@ -230,19 +246,19 @@ const TransactionTable = () => {
                   {/* actions */}
                   <td className="border-secondary w-1/4">
                     {mode === "update" &&
-                    selectedTransaction.id === transaction.id ? (
+                    selectedTransaction._id === transaction._id ? (
                       <div className="flex justify-center">
                         <button
                           className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-3 w-5/12"
                           onClick={handleSave}
                         >
-                          Save <i class="fa-solid fa-check"></i>
+                          Save <i className="fa-solid fa-check"></i>
                         </button>
                         <button
                           className="text-xs font-medium text-white bg-red-500 rounded p-1 w-5/12"
                           onClick={() => setMode("default")}
                         >
-                          Cancel <i class="fa-solid fa-xmark"></i>
+                          Cancel <i className="fa-solid fa-xmark"></i>
                         </button>
                       </div>
                     ) : (
@@ -256,7 +272,7 @@ const TransactionTable = () => {
                         </button>
                         <button
                           className="text-xs font-medium text-white bg-red-500 rounded p-1 w-5/12"
-                          onClick={() => handleDelete(transaction.id)}
+                          onClick={() => handleDelete(transaction._id)}
                         >
                           Delete{" "}
                           <i className="fa fa-trash" aria-hidden="true"></i>

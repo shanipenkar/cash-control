@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 const AddTransaction = () => {
   const location = useLocation();
-  const type = location.state.transactionType;
+  const type = location.state?location.state.transactionType:"";
   
   return (
     <div className='px-6 py-10'>
