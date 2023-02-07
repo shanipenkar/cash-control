@@ -1,25 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { TransactionContext } from "../TransactionsContext";
+// import { TransactionContext } from "../TransactionsContext";
 import "../shared/styles.css";
 import TransactionTable from "../components/TransactionsTable";
 import Balance from "../components/Balance";
 
 const Cashflow = () => {
-  const History = useHistory();
-  const { state } = useContext(TransactionContext);
-
-  useEffect(() => {} , [state]);
+  const history = useHistory();
 
   const onAddExpensePress = () => {
-    History.push({
+    history.push({
       pathname: "/addtransaction",
       state: { transactionType: "expense" },
     });
   };
 
   const onAddIncomePress = () => {
-    History.push({
+    history.push({
       pathname: "/addtransaction",
       state: { transactionType: "income" },
     });
@@ -45,7 +42,7 @@ const Cashflow = () => {
         </button>
       </div>
       <TransactionTable />
-      <Balance /> 
+      {/* <Balance />  */}
     </div>
   );
 };

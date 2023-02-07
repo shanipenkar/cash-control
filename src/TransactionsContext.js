@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 
 const initialState = {
   transactions: [
@@ -59,7 +59,6 @@ const transactionReducer = (state, action) => {
 
 export const TransactionProvider = ({ children }) => {
   const [state, dispatch] = useReducer(transactionReducer, initialState);
-
   return (
     <TransactionContext.Provider value={{ state, dispatch }}>
       {children}

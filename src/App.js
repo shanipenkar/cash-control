@@ -5,12 +5,13 @@ import Cashflow from "./pages/Cashflow";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import AddTransaction from "./pages/AddTransaction";
-import { TransactionProvider } from "./TransactionsContext";
+// import { TransactionProvider } from "./TransactionsContext";
+// import DataContextProvider from "./DataContext";
 import "./shared/styles.css";
-
 function App() {
+
   return (
-    <TransactionProvider>
+    // <DataContextProvider>
     <BrowserRouter baseName="/home">
       <section className="font-montserrat px-20 py-3">
       <Header/>
@@ -23,7 +24,7 @@ function App() {
         </Switch>
       </section>
     </BrowserRouter>
-    </TransactionProvider>
+    // </DataContextProvider>
   );
 }
 
