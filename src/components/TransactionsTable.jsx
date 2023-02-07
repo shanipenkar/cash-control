@@ -104,13 +104,13 @@ const TransactionTable = () => {
           </thead>
           <tbody>
             <tr>
-              <td className="border-0 font-normal text-center text-sm">
+              <td className="border-0 text-red-500 font-normal text-center text-sm">
                 {totalExpenses} ₪
               </td>
-              <td className="border-0 font-normal text-center text-sm">
+              <td className="border-0 text-green-500 font-normal text-center text-sm">
                 {totalIncomes} ₪
               </td>
-              <td className="border-0 font-normal text-center text-sm">
+              <td className="border-0 text-yellow-500 font-normal text-center text-sm">
                 {totalIncomes - totalExpenses} ₪
               </td>
             </tr>
@@ -130,7 +130,7 @@ const TransactionTable = () => {
                 <th className="border-secondary date-cell">Date</th>
                 <th className="border-secondary name-cell">Name</th>
                 <th className="border-secondary other-cell">Type</th>
-                <th className="border-secondary other-cell">Amount</th>
+                <th className="border-secondary other-cell">Amount ₪</th>
                 <th className="border-secondary other-cell">Category</th>
                 <th className="border-secondary other-cell">Description</th>
                 <th className="border-secondary other-cell">Actions</th>
