@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import { TransactionContext } from "../TransactionsContext";
+
 import "../shared/styles.css";
 import TransactionTable from "../components/TransactionsTable";
-import Balance from "../components/Balance";
 
 const Cashflow = () => {
   const history = useHistory();
@@ -27,22 +26,22 @@ const Cashflow = () => {
       <h1 className="flex justify-center font-extrabold text-5xl pb-2 text-white">
         Cash Flow
       </h1>
-      <div className="pt-3 flex justify-center">
+      <div className="py-4 flex justify-center">
         <button
-          className="btn bg-black text-white hover:bg-textColor2 hover:text-black"
+          className="btn bg-black text-white hover:bg-red-500 hover:text-black"
           onClick={onAddExpensePress}
         >
-          Add Expense
+          <i className="fa-solid fa-plus pr-2"></i>Add Expense 
         </button>
         <button
-          className="btn  bg-black text-white hover:bg-textColor2 hover:text-black"
+          className="btn bg-black text-white hover:bg-blue-500 hover:text-black"
           onClick={onAddIncomePress}
         >
-          Add Income
+          <i className="fa-solid fa-plus pr-2"></i>Add Income
         </button>
       </div>
       <TransactionTable />
-      {/* <Balance />  */}
+      
     </div>
   );
 };

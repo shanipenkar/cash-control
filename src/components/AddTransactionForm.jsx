@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import { TransactionContext } from "../TransactionsContext";
 import axios from "axios";
 
 const AddTransactionForm = ({ type }) => {
