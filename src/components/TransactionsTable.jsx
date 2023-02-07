@@ -3,7 +3,6 @@ import React, { useState, useLayoutEffect, useEffect } from "react";
 import axios from "axios";
 
 const TransactionTable = () => {
-
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -34,7 +33,6 @@ const TransactionTable = () => {
 
     setTableUpdated(false);
   }, [tableUpdated]);
-
 
   const handleDelete = (transactionId) => {
     console.log(transactionId);
@@ -90,13 +88,42 @@ const TransactionTable = () => {
   };
 
   return (
-    <div className="pt-7">
+    <div className="items-center text-center">
+      <div className="btn text-textColor bg-black">
+        <table>
+          <thead>
+            <th className="font-bold text-sm px-5 underline underline-offset-2">
+              Total Expenses
+            </th>
+            <th className="font-bold text-sm px-5 underline underline-offset-2">
+              Total Incomes
+            </th>
+            <th className="font-bold text-sm px-5 underline underline-offset-2">
+              Balance
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border-0 font-normal text-center text-sm">
+                {totalExpenses} ₪
+              </td>
+              <td className="border-0 font-normal text-center text-sm">
+                {totalIncomes} ₪
+              </td>
+              <td className="border-0 font-normal text-center text-sm">
+                {totalIncomes - totalExpenses} ₪
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       {transactions.length === 0 ? (
-        <p className="text-center text-3xl text-textColor">
+        <p className="text-center text-3xl text-textColor pt-5">
           No transactions yet
         </p>
       ) : (
-        <div className="rounded-xl bg-white overflow-auto">
+        <div className="rounded-xl bg-white overflow-auto mt-4">
           <table className="justify-center border-secondary table-auto w-full text-center">
             <thead className="bg-transparent text-black">
               <tr className="text-sm font-medium">
@@ -286,11 +313,6 @@ const TransactionTable = () => {
           </table>
         </div>
       )}
-      <div className=" pt-5 text-center text-xl text-textColor">
-        <p>Total Expenses: {totalExpenses}</p>
-        <p>Total Incomes: {totalIncomes}</p>
-        <p>Balance: {totalIncomes - totalExpenses}</p>
-      </div>
     </div>
   );
 };
