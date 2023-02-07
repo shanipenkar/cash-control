@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import { TransactionContext } from "../TransactionsContext";
+
 import "../shared/styles.css";
 import TransactionTable from "../components/TransactionsTable";
-import Balance from "../components/Balance";
 
 const Cashflow = () => {
   const history = useHistory();

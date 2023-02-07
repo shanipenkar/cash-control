@@ -1,9 +1,9 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
-// import { TransactionContext } from "../TransactionsContext";
+
 import axios from "axios";
 
 const TransactionTable = () => {
-  // const { state, dispatch } = useContext(TransactionContext);
+
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [totalExpenses, setTotalExpenses] = useState(0);

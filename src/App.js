@@ -5,8 +5,6 @@ import Cashflow from "./pages/Cashflow";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import AddTransaction from "./pages/AddTransaction";
-// import { TransactionProvider } from "./TransactionsContext";
-// import DataContextProvider from "./DataContext";
 import "./shared/styles.css";
 function App() {
 
