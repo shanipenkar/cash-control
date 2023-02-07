@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useEffect} from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 // import { TransactionContext } from "../TransactionsContext";
 import axios from "axios";
 
@@ -6,35 +6,41 @@ const TransactionTable = () => {
   // const { state, dispatch } = useContext(TransactionContext);
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
-  const [TotalExpenses, setTotalExpenses] = useState(0);
-  const [TotalIncomes, setTotalIncomes] = useState(0);
+  const [totalExpenses, setTotalExpenses] = useState(0);
+  const [totalIncomes, setTotalIncomes] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tableUpdated, setTableUpdated] = useState(false);
-  
-  useLayoutEffect(() => {
-    axios.get("http://localhost:5000/transactions/")
-    .then(res => {
-      if(res.data.length > 0) {
-        setTransactions(res.data);
-        console.log(transactions);
-      }
-    })
-    setTableUpdated(false);
 
-    axios.get("http://localhost:5000/categories/")
-    .then(res => {
-      if(res.data.length > 0) {
-        setCategories(res.data);
-        console.log(categories);
-      }
-    })
-  } , [tableUpdated]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/transactions/").then((res) => {
+      setTransactions(res.data);
+      let expenses = 0;
+      let incomes = 0;
+      res.data.forEach((transaction) => {
+        if (transaction.type === "expense") {
+          expenses += transaction.amount;
+        } else {
+          incomes += transaction.amount;
+        }
+      });
+      setTotalExpenses(expenses);
+      setTotalIncomes(incomes);
+    });
+
+    axios.get("http://localhost:5000/categories/").then((res) => {
+      setCategories(res.data);
+    });
+
+    setTableUpdated(false);
+  }, [tableUpdated]);
+
 
   const handleDelete = (transactionId) => {
     console.log(transactionId);
-    axios.delete("http://localhost:5000/transactions/" + transactionId)
-    .then(res => console.log(res.data))
+    axios
+      .delete("http://localhost:5000/transactions/" + transactionId)
+      .then((res) => console.log(res.data));
     setTableUpdated(true);
   };
 
@@ -57,13 +63,14 @@ const TransactionTable = () => {
 
   // after clicking on V button to save the changes
   const handleSave = () => {
-    // dispatch({
-    //   type: "UPDATE_TRANSACTION",
-    //   payload: selectedTransaction,
-    // });
-    axios.post("http://localhost:5000/transactions/update/" + selectedTransaction._id, selectedTransaction)
-    .then(res => 
-      console.log("Transaction successfully updated:", res.data))
+    axios
+      .post(
+        "http://localhost:5000/transactions/update/" + selectedTransaction._id,
+        selectedTransaction
+      )
+      .then((res) => {
+        console.log("Transaction successfully updated:", res.data);
+      });
     setTableUpdated(true);
     setMode("default");
   };
@@ -126,7 +133,7 @@ const TransactionTable = () => {
                         className="trans-update"
                       />
                     ) : (
-                      transaction.date
+                      new Date(transaction.date).toLocaleDateString()
                     )}
                   </td>
                   {/* name */}
@@ -193,8 +200,9 @@ const TransactionTable = () => {
                           value={selectedTransaction.category}
                           onChange={handleChange}
                         >
-                        {categories[0].map(category => 
-                        <option>{category}</option>)}
+                          {categories[0].map((category) => (
+                            <option>{category}</option>
+                          ))}
                         </select>
                       )}
                     {mode === "update" &&
@@ -208,8 +216,9 @@ const TransactionTable = () => {
                           value={selectedTransaction.category}
                           onChange={handleChange}
                         >
-                          {categories[1].map(category => 
-                        <option>{category}</option>)}
+                          {categories[1].map((category) => (
+                            <option>{category}</option>
+                          ))}
                         </select>
                       )}
                     {mode === "update" &&
@@ -257,6 +266,7 @@ const TransactionTable = () => {
                           className="text-xs font-medium text-white bg-blue-500 rounded p-1 mr-3 w-5/12"
                           onClick={() => handleUpdate(transaction)}
                         >
+                          {" "}
                           Update{" "}
                           <i className="fa fa-pencil" aria-hidden="true"></i>
                         </button>
@@ -276,6 +286,11 @@ const TransactionTable = () => {
           </table>
         </div>
       )}
+      <div className=" pt-5 text-center text-xl text-textColor">
+        <p>Total Expenses: {totalExpenses}</p>
+        <p>Total Incomes: {totalIncomes}</p>
+        <p>Balance: {totalIncomes - totalExpenses}</p>
+      </div>
     </div>
   );
 };
