@@ -36,10 +36,12 @@ const TransactionTable = () => {
 
   const handleDelete = (transactionId) => {
     console.log(transactionId);
-    axios
+    if(window.confirm("Are you sure you want to delete this transaction?")) {
+      axios
       .delete("http://localhost:5000/transactions/" + transactionId)
       .then((res) => console.log(res.data));
     setTableUpdated(true);
+    }
   };
 
   const getDefaultCategory = (type) => {
@@ -130,7 +132,7 @@ const TransactionTable = () => {
                 <th className="border-secondary date-cell">Date</th>
                 <th className="border-secondary name-cell">Name</th>
                 <th className="border-secondary other-cell">Type</th>
-                <th className="border-secondary other-cell">Amount ₪</th>
+                <th className="border-secondary other-cell">Amount</th>
                 <th className="border-secondary other-cell">Category</th>
                 <th className="border-secondary other-cell">Description</th>
                 <th className="border-secondary other-cell">Actions</th>
@@ -196,6 +198,7 @@ const TransactionTable = () => {
                     ) : (
                       transaction.type
                     )}
+                    
                   </td>
 
                   {/* amount */}
