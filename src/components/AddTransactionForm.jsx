@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const AddTransactionForm = ({ type }) => {
-  const backendDir = process.env.BACKEND_DIR;
+
   const history = useHistory();
   const [categories, setCategories] = useState([]);
 
@@ -39,32 +39,10 @@ const AddTransactionForm = ({ type }) => {
   };
 
   const handleSubmit = () => {
-    console.log(transaction);
-    // const newTransaction = {
-    //   date: transaction.date,
-    //   name: transaction.name,
-    //   amount: transaction.amount,
-    //   category: transaction.category,
-    //   description: transaction.description,
-    //   type: transaction.type,
-    // };
-    // console.log(newTransaction);
-    
+    console.log(transaction);    
     axios.post("http://localhost:5000/transactions/add", transaction)
-    .then(res => console.log("Transaction successfully posted:", res.data))
+    .then(res => console.log(res.data))
     history.push("/cashflow");
-
-
-    // dispatch({
-    //   type: "ADD_TRANSACTION",
-    //   payload: transaction,
-    // });
-    // console.log(state);
-    // history.push("/cashflow");
-    // })
-    // .catch(error => {
-    //   console.error("Error posting transaction:", error);
-    // });
   };
 
   return (
@@ -111,7 +89,7 @@ const AddTransactionForm = ({ type }) => {
           onChange={handleChange}
         >
         {categories.map((category) => 
-          <option>{category}</option>
+          <option ket={category}>{category}</option>
         )}
         </select>
         <label className="trans-label">Description:</label>

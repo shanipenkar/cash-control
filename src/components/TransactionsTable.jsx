@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
-
 import axios from "axios";
+
 
 const TransactionTable = () => {
   const [mode, setMode] = useState("default");
@@ -94,15 +94,17 @@ const TransactionTable = () => {
       <div className="btn text-textColor bg-black">
         <table>
           <thead>
-            <th className="font-bold text-sm px-5 underline underline-offset-2">
+          <tr>
+            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
               Total Expenses
             </th>
-            <th className="font-bold text-sm px-5 underline underline-offset-2">
+            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
               Total Incomes
             </th>
-            <th className="font-bold text-sm px-5 underline underline-offset-2">
+            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
               Balance
             </th>
+            </tr>
           </thead>
           <tbody>
             <tr>

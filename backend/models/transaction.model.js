@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const {expensesCategories, incomesCategories}  =  require("../routes/categories.js");
 const transactionsTypes = require("../transactionsTypes.js");
 const Schema = mongoose.Schema;
 

@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import LoginForm from "../components/RegisterForm";
 
 import "../shared/styles.css";
 import TransactionTable from "../components/TransactionsTable";

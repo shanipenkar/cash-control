@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Cashflow from "./pages/Cashflow";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
+import Register from "./pages/Register";
 import AddTransaction from "./pages/AddTransaction";
 import "./shared/styles.css";
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/about" component={About} />
+          <Route path="/register" component={Register} />
           <Route path="/cashflow" component={Cashflow} />
           <Route path="/addtransaction" component={AddTransaction} />
           <Route component={NotFound} />
