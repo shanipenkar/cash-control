@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { LoginContext } from "../LoginContext";
 
 const AddTransactionForm = ({ type }) => {
-  const backendDir = process.env.BACKEND_DIR;
+
   const history = useHistory();
   const [categories, setCategories] = useState([]);
-
+  const {loggedUser, setLoggedUser} = useContext(LoginContext);
   // const { state, dispatch } = useContext(TransactionContext);
   const today = new Date().toISOString("en-GB").slice(0, 10);
   const [transaction, setTransaction] = useState({
@@ -16,6 +17,7 @@ const AddTransactionForm = ({ type }) => {
     category: type==="expense"?"Food":"Salary",
     description: "",
     type: type,
+    userId: loggedUser.id,
   });
 
   useEffect(() => {
@@ -39,32 +41,10 @@ const AddTransactionForm = ({ type }) => {
   };
 
   const handleSubmit = () => {
-    console.log(transaction);
-    // const newTransaction = {
-    //   date: transaction.date,
-    //   name: transaction.name,
-    //   amount: transaction.amount,
-    //   category: transaction.category,
-    //   description: transaction.description,
-    //   type: transaction.type,
-    // };
-    // console.log(newTransaction);
-    
-    axios.post("http://localhost:5000/transactions/add", transaction)
-    .then(res => console.log("Transaction successfully posted:", res.data))
+    console.log(transaction);    
+    axios.post("http://localhost:5000/transactions/add", {loggedUser, ...transaction})
+    .then(res => console.log(res.data))
     history.push("/cashflow");
-
-
-    // dispatch({
-    //   type: "ADD_TRANSACTION",
-    //   payload: transaction,
-    // });
-    // console.log(state);
-    // history.push("/cashflow");
-    // })
-    // .catch(error => {
-    //   console.error("Error posting transaction:", error);
-    // });
   };
 
   return (
@@ -111,7 +91,7 @@ const AddTransactionForm = ({ type }) => {
           onChange={handleChange}
         >
         {categories.map((category) => 
-          <option>{category}</option>
+          <option ket={category}>{category}</option>
         )}
         </select>
         <label className="trans-label">Description:</label>

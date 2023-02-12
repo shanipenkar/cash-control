@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useHistory } from "react-router-dom";
+import { LoginContext } from "../LoginContext";
 
 const Title = () => {
-    const History = useHistory();
+    const history = useHistory();
+    const { isLoggedIn, setIsLoggedIn} = useContext(LoginContext);
+    
   return (
     <div className="text-center pt-10">
         <h1 className="font-extrabold text-5xl text-white w-full">Cash Control</h1>
@@ -10,12 +13,12 @@ const Title = () => {
           Manage Your Cash Flow Easily In One Click!
         </h2>
         <button
-          className="btn bg-black text-white hover:bg-textColor2 hover:text-black"
+          className="btn bg-black text-white"
           onClick={() => {
-            History.push("/cashflow");
+            isLoggedIn? history.push("/cashflow"): history.push("/auth");
           }}
         >
-          Cash Flow
+          Get Started!
         </button>
       </div>
   );

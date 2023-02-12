@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const {expensesCategories, incomesCategories}  =  require("../routes/categories.js");
 const transactionsTypes = require("../transactionsTypes.js");
 const Schema = mongoose.Schema;
 
 
 const transactionSchema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     date: {type: Date, required: true},
     type: {type: String, required: true, enum:transactionsTypes},
     name: {type: String, required: true},
