@@ -1,8 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { LoginContext } from "../LoginContext";
 
 
 const TransactionTable = () => {
+  const {loggedUser} = useContext(LoginContext);
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -12,7 +14,7 @@ const TransactionTable = () => {
   const [tableUpdated, setTableUpdated] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/transactions/").then((res) => {
+    axios.get("http://localhost:5000/transactions/" + loggedUser.id).then((res) => {
       setTransactions(res.data);
       let expenses = 0;
       let incomes = 0;

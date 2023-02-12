@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { LoginContext } from "../LoginContext";
 
 const AddTransactionForm = ({ type }) => {
 
   const history = useHistory();
   const [categories, setCategories] = useState([]);
-
+  const {loggedUser, setLoggedUser} = useContext(LoginContext);
   // const { state, dispatch } = useContext(TransactionContext);
   const today = new Date().toISOString("en-GB").slice(0, 10);
   const [transaction, setTransaction] = useState({
@@ -16,6 +17,7 @@ const AddTransactionForm = ({ type }) => {
     category: type==="expense"?"Food":"Salary",
     description: "",
     type: type,
+    userId: loggedUser.id,
   });
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const AddTransactionForm = ({ type }) => {
 
   const handleSubmit = () => {
     console.log(transaction);    
-    axios.post("http://localhost:5000/transactions/add", transaction)
+    axios.post("http://localhost:5000/transactions/add", {loggedUser, ...transaction})
     .then(res => console.log(res.data))
     history.push("/cashflow");
   };

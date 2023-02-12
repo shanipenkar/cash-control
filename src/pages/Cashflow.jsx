@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import LoginForm from "../components/RegisterForm";
-
 import "../shared/styles.css";
 import TransactionTable from "../components/TransactionsTable";
+import { LoginContext } from "../LoginContext";
 
 const Cashflow = () => {
   const history = useHistory();
+  const { isLoggedIn } = useContext(LoginContext);
 
   const onAddExpensePress = () => {
     history.push({
@@ -23,6 +23,8 @@ const Cashflow = () => {
   };
 
   return (
+    <>
+    {!isLoggedIn && history.push("/auth")}
     <div className="px-6 py-10">
       <h1 className="flex justify-center font-extrabold text-5xl pb-2 text-white">
         Cash Flow
@@ -44,6 +46,7 @@ const Cashflow = () => {
       <TransactionTable />
       
     </div>
+    </>
   );
 };
 
