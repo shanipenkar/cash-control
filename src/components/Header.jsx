@@ -41,7 +41,7 @@ const Header = () => {
               setLoggedUser({username: "", password: ""})
             }}
           >
-          <p className="text-black">Loggged as: {loggedUser.username}</p>
+          <p className="text-orange-500">Loggged as: {loggedUser.username}</p>
             Logout
           </NavLink>
           </>

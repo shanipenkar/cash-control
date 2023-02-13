@@ -15,6 +15,8 @@ router.route('/deleteall').delete((req, res) => {
 router.route('/register').post((req, res) => {
     
   const newUser = new User({
+    fullName: req.body.fullName,
+    email: req.body.email,
     username: req.body.username,
     password: req.body.password
   });
