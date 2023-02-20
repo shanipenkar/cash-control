@@ -25,7 +25,7 @@ router.route('/register').post((req, res) => {
   newUser.save(function(err){
     if (err) {
       console.log(`Error occurred while saving new user: ${err}`);
-      res.status(400).send({ status: "Error:",message: "User already exists!"});
+      res.status(400).send({ status: "Error:",message: "Username already exists!"});
     } else {
       res.status(200).send({ status: "Success:", message: "User added!", userId: newUser._id});
     }

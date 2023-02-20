@@ -22,20 +22,29 @@ const AuthenticationForm = ({ type }) => {
     });
   };
 
-  const clearInputs = () => {
-    setUser({
-      fullName: "",
-      username: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-    });
+  const clearInputs = (whatToClear) => {
+    if (whatToClear === "password") {
+      setUser({
+        ...user,
+        password: "",
+        passwordConfirm: "",
+      });
+    } else {
+      setUser({
+        fullName: "",
+        username: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
+    }
   };
 
   const register = () => {
     setAuthRes({ status: "", msg: "" });
-    if(user.password !== user.passwordConfirm){
+    if (user.password !== user.passwordConfirm) {
       setAuthRes({ status: "Error:", msg: "Passwords do not match!" });
+      clearInputs("password");
     } else {
       fetch("http://localhost:5000/users/register", {
         method: "POST",
@@ -54,7 +63,7 @@ const AuthenticationForm = ({ type }) => {
         })
         .then((data) => {
           setAuthRes({ status: data.status, msg: data.message });
-          console.log(data.userId)
+          console.log(data.userId);
           if (data.status === "Success:") {
             setIsLoggedIn(true);
             setLoggedUser({ id: data.userId, ...user });
@@ -67,11 +76,10 @@ const AuthenticationForm = ({ type }) => {
           console.error("There was a problem with the fetch operation:", error);
           console.log("Error:", error.message);
         });
-  
+      clearInputs("all");
     }
-    clearInputs();
   };
-  
+
   const login = () => {
     setAuthRes({ status: "", msg: "" });
     fetch("http://localhost:5000/users/login", {
@@ -101,7 +109,7 @@ const AuthenticationForm = ({ type }) => {
         console.error("There was a problem with the fetch operation:", error);
         console.log("Error:", error.message);
       });
-      clearInputs();
+    clearInputs("all");
   };
 
   const handleSubmit = async (e) => {
@@ -113,46 +121,45 @@ const AuthenticationForm = ({ type }) => {
     }
   };
 
-
   return (
     <>
       <div className="flex items-center justify-center">
         <form
           className="w-2/3 p-4 border border-gray-400 rounded pb-10 form"
           onSubmit={handleSubmit}
-          >
-        {type === "Register" ? (
-          <>
-          <div className="mb-4">
-            <label className="block text-black font-medium mb-2">
-              Full Name:
-            </label>
-            <input
-              type="text"
-              required
-              autoComplete="off"
-              onChange={handleChange}
-              name="fullName"
-              value={user.fullName}
-              className="w-full p-2 border border-gray-400 rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-black font-medium mb-2">
-              Email:
-            </label>
-            <input
-              type="email"
-              required
-              autoComplete="off"
-              onChange={handleChange}
-              name="email"
-              value={user.email}
-              className="w-full p-2 border border-gray-400 rounded"
-            />
-          </div>
-          </>
-        ):null}
+        >
+          {type === "Register" ? (
+            <>
+              <div className="mb-4">
+                <label className="block text-black font-medium mb-2">
+                  Full Name:
+                </label>
+                <input
+                  type="text"
+                  required
+                  autoComplete="off"
+                  onChange={handleChange}
+                  name="fullName"
+                  value={user.fullName}
+                  className="w-full p-2 border border-gray-400 rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-black font-medium mb-2">
+                  Email:
+                </label>
+                <input
+                  type="email"
+                  required
+                  autoComplete="off"
+                  onChange={handleChange}
+                  name="email"
+                  value={user.email}
+                  className="w-full p-2 border border-gray-400 rounded"
+                />
+              </div>
+            </>
+          ) : null}
           <div className="mb-4">
             <label className="block text-black font-medium mb-2">
               Username:
@@ -183,20 +190,20 @@ const AuthenticationForm = ({ type }) => {
           </div>
           {type === "Register" ? (
             <div className="mb-4">
-            <label className="block text-black font-medium mb-2">
-              Confirm Password:
-            </label>
-            <input
-              type="password"
-              required
-              autoComplete="off"
-              onChange={handleChange}
-              name="passwordConfirm"
-              value={user.passwordConfirm}
-              className="w-full p-2 border border-gray-400 rounded"
-            />
-          </div>
-          ):null}
+              <label className="block text-black font-medium mb-2">
+                Confirm Password:
+              </label>
+              <input
+                type="password"
+                required
+                autoComplete="off"
+                onChange={handleChange}
+                name="passwordConfirm"
+                value={user.passwordConfirm}
+                className="w-full p-2 border border-gray-400 rounded"
+              />
+            </div>
+          ) : null}
           <button
             type="submit"
             value="Submit"
@@ -207,19 +214,19 @@ const AuthenticationForm = ({ type }) => {
         </form>
       </div>
       <div>
-      <p
-        className={`pt-2 text-center ${
-          authRes.status === "Success:" ? "text-green-500" : "text-red-500"
-        }`}
-      >
-        {authRes.msg}
-      </p>
-      {authRes.status === "Success:" ? (
-        <p className="text-center text-green-500">Redirecting...</p>
-      ) : null}
-      {authRes.status === "Error:" ? (
-        <p className="text-center text-red-500">Please try again!</p>
-      ) : null}
+        <p
+          className={`pt-2 text-center ${
+            authRes.status === "Success:" ? "text-green-500" : "text-red-500"
+          }`}
+        >
+          {authRes.msg}
+        </p>
+        {authRes.status === "Success:" ? (
+          <p className="text-center text-green-500">Redirecting...</p>
+        ) : null}
+        {authRes.status === "Error:" ? (
+          <p className="text-center text-red-500">Please try again!</p>
+        ) : null}
       </div>
     </>
   );
