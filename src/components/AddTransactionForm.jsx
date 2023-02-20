@@ -8,7 +8,6 @@ const AddTransactionForm = ({ type }) => {
   const history = useHistory();
   const [categories, setCategories] = useState([]);
   const {loggedUser, setLoggedUser} = useContext(LoginContext);
-  // const { state, dispatch } = useContext(TransactionContext);
   const today = new Date().toISOString("en-GB").slice(0, 10);
   const [transaction, setTransaction] = useState({
     date: today,
