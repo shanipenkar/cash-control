@@ -139,8 +139,8 @@ const AuthenticationForm = ({ type }) => {
         >
           {type === "Register" ? (
             <>
-              <div className="mb-4">
-                <label className="block text-black text-xs font-medium mb-2">
+              <div className="mb-2">
+                <label className="block text-black text-xs font-medium">
                   Full Name:
                 </label>
                 <input
@@ -150,11 +150,11 @@ const AuthenticationForm = ({ type }) => {
                   onChange={handleChange}
                   name="fullName"
                   value={user.fullName}
-                  className="w-full border border-gray-400 rounded"
+                  className="w-full px-2 py-1 my-1 text-xs border border-gray-400 rounded"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-xs text-black font-medium mb-2">
+              <div className="mb-2">
+                <label className="block text-xs text-black font-medium">
                   Email:
                 </label>
                 <input
@@ -164,13 +164,13 @@ const AuthenticationForm = ({ type }) => {
                   onChange={handleChange}
                   name="email"
                   value={user.email}
-                  className="w-full border border-gray-400 rounded"
+                  className="w-full px-2 py-1 my-1 text-xs border border-gray-400 rounded"
                 />
               </div>
             </>
           ) : null}
-          <div className="mb-4">
-            <label className="block text-xs text-black font-medium mb-2">
+          <div className="mb-2">
+            <label className="block text-xs text-black font-medium">
               Username:
             </label>
             <input
@@ -180,11 +180,11 @@ const AuthenticationForm = ({ type }) => {
               onChange={handleChange}
               name="username"
               value={user.username}
-              className="w-full border border-gray-400 rounded"
+              className="w-full px-2 py-1 my-1 text-xs border border-gray-400 rounded"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-xs text-black font-medium mb-2">
+          <div className="mb-2">
+            <label className="block text-xs text-black font-medium">
               Password:
             </label>
             <input
@@ -194,12 +194,12 @@ const AuthenticationForm = ({ type }) => {
               onChange={handleChange}
               name="password"
               value={user.password}
-              className="w-full border border-gray-400 rounded"
+              className="w-full px-2 py-1 my-1 text-xs border border-gray-400 rounded"
             />
           </div>
           {type === "Register" ? (
-            <div className="mb-4">
-              <label className="block text-xs text-black font-medium mb-2">
+            <div className="mb-2">
+              <label className="block text-xs text-black font-medium">
                 Confirm Password:
               </label>
               <input
@@ -209,7 +209,7 @@ const AuthenticationForm = ({ type }) => {
                 onChange={handleChange}
                 name="passwordConfirm"
                 value={user.passwordConfirm}
-                className="w-full border border-gray-400 rounded"
+                className="w-full px-2 py-1 my-1 text-xs border border-gray-400 rounded"
               />
             </div>
           ) : null}
