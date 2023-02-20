@@ -2,9 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { LoginContext } from "../LoginContext";
 
-
 const TransactionTable = () => {
-  const {loggedUser} = useContext(LoginContext);
+  const { loggedUser } = useContext(LoginContext);
   const [mode, setMode] = useState("default");
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [totalExpenses, setTotalExpenses] = useState(0);
@@ -14,20 +13,25 @@ const TransactionTable = () => {
   const [tableUpdated, setTableUpdated] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/transactions/" + loggedUser.id).then((res) => {
-      setTransactions(res.data);
-      let expenses = 0;
-      let incomes = 0;
-      res.data.forEach((transaction) => {
-        if (transaction.type === "expense") {
-          expenses += transaction.amount;
-        } else {
-          incomes += transaction.amount;
-        }
+    axios
+      .get("http://localhost:5000/transactions/" + loggedUser.id)
+      .then((res) => {
+        const sortedTransactions = res.data.sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+        setTransactions(sortedTransactions);
+        let expenses = 0;
+        let incomes = 0;
+        res.data.forEach((transaction) => {
+          if (transaction.type === "expense") {
+            expenses += transaction.amount;
+          } else {
+            incomes += transaction.amount;
+          }
+        });
+        setTotalExpenses(expenses);
+        setTotalIncomes(incomes);
       });
-      setTotalExpenses(expenses);
-      setTotalIncomes(incomes);
-    });
 
     axios.get("http://localhost:5000/categories/").then((res) => {
       setCategories(res.data);
@@ -38,11 +42,11 @@ const TransactionTable = () => {
 
   const handleDelete = (transactionId) => {
     console.log(transactionId);
-    if(window.confirm("Are you sure you want to delete this transaction?")) {
+    if (window.confirm("Are you sure you want to delete this transaction?")) {
       axios
-      .delete("http://localhost:5000/transactions/" + transactionId)
-      .then((res) => console.log(res.data));
-    setTableUpdated(true);
+        .delete("http://localhost:5000/transactions/" + transactionId)
+        .then((res) => console.log(res.data));
+      setTableUpdated(true);
     }
   };
 
@@ -96,16 +100,16 @@ const TransactionTable = () => {
       <div className="btn text-textColor bg-black">
         <table>
           <thead>
-          <tr>
-            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
-              Total Expenses
-            </th>
-            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
-              Total Incomes
-            </th>
-            <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
-              Balance
-            </th>
+            <tr>
+              <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
+                Total Expenses
+              </th>
+              <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
+                Total Incomes
+              </th>
+              <th className="font-bold border-0 text-sm px-5 underline underline-offset-2">
+                Balance
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -202,7 +206,6 @@ const TransactionTable = () => {
                     ) : (
                       transaction.type
                     )}
-                    
                   </td>
 
                   {/* amount */}
