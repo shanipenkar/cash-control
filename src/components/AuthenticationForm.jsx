@@ -121,17 +121,26 @@ const AuthenticationForm = ({ type }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center bg-gray-100 rounded-lg py-6">
         <form
-          className="w-2/3 p-4 border border-gray-400 rounded pb-10 form"
+          className="w-2/3 p-2 border border-gray-400 rounded pb-3 form"
           onSubmit={handleSubmit}
+          onKeyDown={handleKeyDown}
         >
           {type === "Register" ? (
             <>
               <div className="mb-4">
-                <label className="block text-black font-medium mb-2">
+                <label className="block text-black text-xs font-medium mb-2">
                   Full Name:
                 </label>
                 <input
@@ -141,11 +150,11 @@ const AuthenticationForm = ({ type }) => {
                   onChange={handleChange}
                   name="fullName"
                   value={user.fullName}
-                  className="w-full p-2 border border-gray-400 rounded"
+                  className="w-full border border-gray-400 rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-black font-medium mb-2">
+                <label className="block text-xs text-black font-medium mb-2">
                   Email:
                 </label>
                 <input
@@ -155,13 +164,13 @@ const AuthenticationForm = ({ type }) => {
                   onChange={handleChange}
                   name="email"
                   value={user.email}
-                  className="w-full p-2 border border-gray-400 rounded"
+                  className="w-full border border-gray-400 rounded"
                 />
               </div>
             </>
           ) : null}
           <div className="mb-4">
-            <label className="block text-black font-medium mb-2">
+            <label className="block text-xs text-black font-medium mb-2">
               Username:
             </label>
             <input
@@ -171,11 +180,11 @@ const AuthenticationForm = ({ type }) => {
               onChange={handleChange}
               name="username"
               value={user.username}
-              className="w-full p-2 border border-gray-400 rounded"
+              className="w-full border border-gray-400 rounded"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-black font-medium mb-2">
+            <label className="block text-xs text-black font-medium mb-2">
               Password:
             </label>
             <input
@@ -185,12 +194,12 @@ const AuthenticationForm = ({ type }) => {
               onChange={handleChange}
               name="password"
               value={user.password}
-              className="w-full p-2 border border-gray-400 rounded"
+              className="w-full border border-gray-400 rounded"
             />
           </div>
           {type === "Register" ? (
             <div className="mb-4">
-              <label className="block text-black font-medium mb-2">
+              <label className="block text-xs text-black font-medium mb-2">
                 Confirm Password:
               </label>
               <input
@@ -200,14 +209,14 @@ const AuthenticationForm = ({ type }) => {
                 onChange={handleChange}
                 name="passwordConfirm"
                 value={user.passwordConfirm}
-                className="w-full p-2 border border-gray-400 rounded"
+                className="w-full border border-gray-400 rounded"
               />
             </div>
           ) : null}
           <button
             type="submit"
             value="Submit"
-            className="bg-black big-btn w-full mt-7 p-2 text-white rounded"
+            className="bg-black big-btn w-full mt-2 p-1 text-white rounded"
           >
             {type}
           </button>

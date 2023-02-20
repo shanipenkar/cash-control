@@ -4,33 +4,32 @@ import axios from "axios";
 import { LoginContext } from "../LoginContext";
 
 const AddTransactionForm = ({ type }) => {
-
   const history = useHistory();
   const [categories, setCategories] = useState([]);
-  const {loggedUser, setLoggedUser} = useContext(LoginContext);
+  const { loggedUser, setLoggedUser } = useContext(LoginContext);
   const today = new Date().toISOString("en-GB").slice(0, 10);
   const [transaction, setTransaction] = useState({
     date: today,
     name: "",
     amount: 0,
-    category: type==="expense"?"Food":"Salary",
+    category: type === "expense" ? "Food" : "Salary",
     description: "",
     type: type,
     userId: loggedUser.id,
   });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/categories/" + type)
-    .then(res => {
-      if(res.data.length > 0) {
-        setCategories(res.data)
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching categories:", error);
-  });
+    axios
+      .get("http://localhost:5000/categories/" + type)
+      .then((res) => {
+        if (res.data.length > 0) {
+          setCategories(res.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
   }, []);
-
 
   const handleChange = (e) => {
     setTransaction({
@@ -40,11 +39,15 @@ const AddTransactionForm = ({ type }) => {
   };
 
   const handleSubmit = () => {
-    console.log(transaction);    
+    console.log(transaction);
     console.log(loggedUser);
     console.log(transaction);
-    axios.post("http://localhost:5000/transactions/add", {loggedUser, ...transaction})
-    .then(res => console.log(res.data))
+    axios
+      .post("http://localhost:5000/transactions/add", {
+        loggedUser,
+        ...transaction,
+      })
+      .then((res) => console.log(res.data));
     history.push("/cashflow");
   };
 
@@ -53,6 +56,12 @@ const AddTransactionForm = ({ type }) => {
       <form
         className="bg-white p-3 justify-center rounded-lg shadow-md w-1/2 mx-auto"
         onSubmit={handleSubmit}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault(); // prevent default form submission behavior
+            handleSubmit();
+          }
+        }}
       >
         <label className="trans-label">Date:</label>
         <input
@@ -91,9 +100,9 @@ const AddTransactionForm = ({ type }) => {
           value={transaction.category}
           onChange={handleChange}
         >
-        {categories.map((category) => 
-          <option key={category}>{category}</option>
-        )}
+          {categories.map((category) => (
+            <option key={category}>{category}</option>
+          ))}
         </select>
         <label className="trans-label">Description:</label>
         <textarea
