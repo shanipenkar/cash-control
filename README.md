@@ -22,13 +22,13 @@
 
 ![empty](https://user-images.githubusercontent.com/73595826/224748089-9a431df4-e72b-4180-8167-69916fb2c7c0.png)
 
-## Let's Add an Income Transaction
+## Let's Add an Income Transaction (salary)
 
-![empty](https://user-images.githubusercontent.com/73595826/224748089-9a431df4-e72b-4180-8167-69916fb2c7c0.png)
+![addincome](https://user-images.githubusercontent.com/73595826/224748106-4c417282-9c98-4ee2-b142-852cbdfd0abb.png)
 
 ## Let's Add an Expense Transaction (food for lucky my dog)
 
-![addincome](https://user-images.githubusercontent.com/73595826/224748106-4c417282-9c98-4ee2-b142-852cbdfd0abb.png)
+![addexpense](https://user-images.githubusercontent.com/73595826/224749291-e92300eb-bee4-4d56-b05d-2d7fc45eb1fd.png)
 
 ## My Updated Cash Flow
 
