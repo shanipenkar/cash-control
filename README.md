@@ -14,6 +14,10 @@
 
 ![homescreen](https://user-images.githubusercontent.com/73595826/224747602-da224615-2ab5-4034-a40e-40172744df14.png)
 
+## About Page
+
+![about](https://user-images.githubusercontent.com/73595826/224755616-8664a18b-7830-4ee4-94c1-a5cac8b8a006.png)
+
 ## Register & Login Page
 
 ![register](https://user-images.githubusercontent.com/73595826/224747805-80260dd1-1499-410d-86d4-cff41b059ee7.png)
