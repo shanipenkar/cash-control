@@ -16,7 +16,7 @@
 
 ## About Page
 
-![about](https://user-images.githubusercontent.com/73595826/224755616-8664a18b-7830-4ee4-94c1-a5cac8b8a006.png)
+![about](https://user-images.githubusercontent.com/73595826/224757465-51686a29-e745-4148-8e53-98c46c3c5260.png)
 
 ## Register & Login Page
 
