@@ -19,7 +19,7 @@ Whether you're a student, a professional, or a freelancer, this tool is intended
       </p>{" "}
 
       <p className="text-lg text-textColor w-full my-5">
-      As a computer science graduate and a Udemy  Full Fullstack Bootcamp certificate holder, I leveraged my knowledge in web development to build this project. The Cash Flow Project is created using the latest web technologies, including React, Node.js, Express.js, and MongoDB, to provide you with a user-friendly experience.
+      As a computer science graduate and a Udemy Fullstack Bootcamp certificate holder, I leveraged my knowledge in web development to build this project. The Cash Flow Project is created using the latest web technologies, including React, Node.js, Express.js, and MongoDB, to provide you with a user-friendly experience.
         </p>{" "}
 
 
